@@ -1,0 +1,23 @@
+<h1>本の感想を投稿</h1>
+<%= form_with(model: @book, class:"form") do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %>
+  <%= f.label :body%>
+  <%= f.text_area :body %>
+  <%= f.submit '投稿' %>
+<%end%>
+<div id="books">
+  <% @books.each do |book| %>
+    <p id="book_<%= book.id %>">
+      <span class="book">
+        <%= book.title %>
+      </span>
+      <span class="book">
+        <%= book.body %>
+      </span>
+      <span class="book">
+        <%= link_to('削除',book_path(book.id), method: :delete, remote: true, class:"book_delete") %>
+      </span>
+    </p>
+  <%end%>
+</div>
